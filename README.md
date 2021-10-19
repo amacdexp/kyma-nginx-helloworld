@@ -7,15 +7,17 @@ Example helloworld running on SAP Kyma, using nginx demo image
 
 Can be run on a SAP Kyma trial (a Kubernetes [k8s] service)
 
+[SAP Kyma runtime available in trial] (https://blogs.sap.com/2020/10/09/kyma-runtime-available-in-trial-and-now-we-are-complete/)
+
 # Steps
 ```
-#Download kubeconfig.yml from Kyma console.. See under 'User Profile', top right corner
+#Download kubeconfig.yml from Kyma console.. See download/export option under 'User Profile' - top right corner
 
-> ## windows cmd
+## windows cmd
 >> Set KUBECONFIG=C:\Users\<user>\Downloads\kubeconfig.yml 
-> ## windows powershell
+## windows powershell
 >> $env:KUBECONFIG="C:\Users\<user>\Downloads\kubeconfig.yml" 
-> ## linux
+## linux
 >> export KUBECONFIG=/Users/<user>/Downloads/kubeconfig.yml 
 
 
