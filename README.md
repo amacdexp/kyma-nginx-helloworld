@@ -7,7 +7,7 @@ Example helloworld running on SAP Kyma, using nginx demo image
 
 Can be run on a SAP Kyma trial (a Kubernetes [k8s] service)
 
-[SAP Kyma runtime available in trial] (https://blogs.sap.com/2020/10/09/kyma-runtime-available-in-trial-and-now-we-are-complete/)
+[SAP Kyma runtime available in trial](https://blogs.sap.com/2020/10/09/kyma-runtime-available-in-trial-and-now-we-are-complete/)
 
 # Steps
 ```
