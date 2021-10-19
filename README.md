@@ -27,5 +27,6 @@ Can be run on a SAP Kyma trial (a Kubernetes [k8s] service)
 kubectl cluster-info  -n dev
 
 #Deploy image
+#NOTE: First update the service host name in the API Rule in deployment.yaml with your Kyma cluster id
 kubectl replace --force -n dev -f deployment.yaml  
 ```
