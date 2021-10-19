@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nghello
+  labels:
+    app: nghello
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nghello
+  template:
+    metadata:
+      labels:
+        app: nghello
+        version: v1
+    spec:
+      containers:
+        - name: nghello
+          image: nginxdemos/hello
+          imagePullPolicy: Always
+          #imagePullPolicy: IfNotPresent
+          #imagePullPolicy: Never
+          #command: ["/bin/sh", "-c"]
+          #args: 
+          #  - >-
+          #      echo "test'" &&
+          # 
+          ports:
+            - name: http
+              containerPort: 80
+          volumeMounts:
+          #- name: user-storage-volume
+          #  mountPath: /home
+          #env:
+          #- name: GRANT_SUDO
+          #  value: "yes"
+          securityContext:
+            runAsUser: 0
+          resources:
+            limits:
+              memory: 4000Mi
+            requests:
+              memory: 3200Mi
+      #securityContext:
+      #  fsGroup: 100
+      #volumes:
+      #- name: user-storage-volume
+      #  persistentVolumeClaim:
+      #    claimName: nghello-pvc
+
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nghello
+  labels:
+    app: nghello
+spec:
+  #clusterIP: None
+  ports:
+  - name: http
+    targetPort: 80
+    protocol: TCP
+    port: 80
+  selector:
+    app: nghello
+---
+apiVersion: gateway.kyma-project.io/v1alpha1
+kind: APIRule
+metadata:
+  name: nghello
+spec:
+  gateway: kyma-gateway.kyma-system.svc.cluster.local
+  rules:
+  - accessStrategies:
+    - config: {}
+      handler: allow
+    methods:
+    - GET
+    path: /.*
+  service:
+    host: nghello.<your kyma cluster here>.kyma.shoot.live.k8s-hana.ondemand.com
+    name: nghello
+    port: 80
